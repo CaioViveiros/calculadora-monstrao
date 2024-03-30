@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Monstrão</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="screen">
+        <h1>CALCULADORA DE MONSTRÃO</h1>
+        <div class="conteiner">
+            <div class="box">
+                <input id="input_numero">
+                <select id="select_base">
+                    <option value="decimal">Decimal</option>
+                    <option value="binario">Binario</option>
+                    <option value="octal">Octal</option>
+                    <option value="hexadecimal">Hexadecimal</option>
+                </select>
+                <button onclick="Converter()">Converter</button>
+            </div>
+            <div id="div_resultado" class="box resultado">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    function Converter() {
+        const base = select_base.value
+
+        let decimal = 0
+        let binario = 0
+        let octal = 0
+        let hexadecimal = 0
+
+        if (base == 'decimal') {
+            let numero_decimal = Number(input_numero.value)
+            binario = numero_decimal.toString(2)
+            octal = numero_decimal.toString(8)
+            hexadecimal = numero_decimal.toString(16).toUpperCase()
+            div_resultado.innerHTML = `
+            BINARIO - ${binario}<br><br>
+            OCTAL - ${octal}<br><br>
+            HEXADECIMAL - ${hexadecimal}`
+        }
+        if (base == 'binario') {
+            let numero_binario = input_numero.value
+            numero_binario = parseInt(numero_binario, 2)
+            decimal = numero_binario.toString(10)
+            octal = numero_binario.toString(8)
+            hexadecimal = numero_binario.toString(16).toUpperCase()
+            div_resultado.innerHTML = `
+            DECIMAL - ${decimal}<br><br>
+            OCTAL - ${octal}<br><br>
+            HEXADECIMAL - ${hexadecimal}`
+        }
+        if (base == 'octal') {
+            let numero_octal = input_numero.value
+            numero_octal = parseInt(numero_octal, 8)
+            decimal = numero_octal.toString(10)
+            binario = numero_octal.toString(2)
+            hexadecimal = numero_octal.toString(16).toUpperCase()
+            div_resultado.innerHTML = `
+            DECIMAL - ${decimal}<br><br>
+            BINARIO - ${binario}<br><br>
+            HEXADECIMAL - ${hexadecimal}`
+        }
+        if (base == 'hexadecimal') {
+            let numero_hexadecimal = input_numero.value
+            numero_hexadecimal = parseInt(numero_hexadecimal, 16)
+            decimal = numero_hexadecimal.toString(10)
+            binario = numero_hexadecimal.toString(2)
+            octal = numero_hexadecimal.toString(8)
+            div_resultado.innerHTML = `
+            DECIMAL - ${decimal}<br><br>
+            BINARIO - ${binario}<br><br>
+            OCTAL - ${octal}`
+        }
+    }
+</script>
